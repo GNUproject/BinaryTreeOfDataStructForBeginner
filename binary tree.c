@@ -1,18 +1,18 @@
 
-// ¶ş²æÊ÷
+// äºŒå‰æ ‘
 // binary tree.c
 
 #include "binary tree.h"
 #include "queue of binary tree.h"
-#include "stack Of binary tree.h"
+#include "stack of binary tree.h"
 
 #define GetMax(x,y)	((x)>(y)?(x):(y))
 #define GetTreeHeight(t) ((t) != NULL ? (t)->height : -1)
 
 #ifdef WINDOWS_VISUALSTUDIO
-	static const char * const WhiteList = " !#$%&`()+,-.;=@{|}[]^_'{}~"; // ÎÄ¼şÃûÌØÊâ×Ö·û°×Ãûµ¥
+	static const char * const WhiteList = " !#$%&`()+,-.;=@{|}[]^_'{}~"; // æ–‡ä»¶åç‰¹æ®Šå­—ç¬¦ç™½åå•
 #else
-	static const char * const WhiteList = " !\"#$%&`()*+,-./:;<=>\?@{|}[\\]^_\'{|}~"; // ÎÄ¼şÃûÌØÊâ×Ö·û°×Ãûµ¥
+	static const char * const WhiteList = " !\"#$%&`()*+,-./:;<=>\?@{|}[\\]^_\'{|}~"; // æ–‡ä»¶åç‰¹æ®Šå­—ç¬¦ç™½åå•
 #endif
 
 #ifdef CAN_OPEN_FILE
@@ -25,24 +25,24 @@
 	static const char * const QueueFileName = NULL;
 #endif
 
-const char * const SameTreeItem = "Ìí¼ÓÖØ¸´ÊıÖµÏî\n";
-const char * const NoTreeItem = "¶ş²æÊ÷ÖĞ²»´æÔÚ¸Ã½áµã!\n";
-const char * const InputError = "ÊäÈë´íÎó!\n";
-const char * const NullPointer = "¿ÕÖ¸Õë\n";
-const char * const OpenFileError = "´ò¿ªÎÄ¼ş%sÊ§°Ü!\n";
-const char * const CloseFileError = "¹Ø±ÕÎÄ¼ş%sÊ§°Ü!\n";
-const char * const FileOperationError = "ÎÄ¼ş%s²Ù×÷Ê§°Ü!\n";
-const char * const FileNameTooLong = "ÎÄ¼şÃû¹ı³¤\n";
-const char * const FileNameError = "ÎÄ¼şÃû°üº¬·Ç·¨×Ö·û: %s\n";
-const char * const MemoryNotEnough = "ÄÚ´æ²»×ã!\n";
+const char * const SameTreeItem = "æ·»åŠ é‡å¤æ•°å€¼é¡¹\n";
+const char * const NoTreeItem = "äºŒå‰æ ‘ä¸­ä¸å­˜åœ¨è¯¥ç»“ç‚¹!\n";
+const char * const InputError = "è¾“å…¥é”™è¯¯!\n";
+const char * const NullPointer = "ç©ºæŒ‡é’ˆ\n";
+const char * const OpenFileError = "æ‰“å¼€æ–‡ä»¶%så¤±è´¥!\n";
+const char * const CloseFileError = "å…³é—­æ–‡ä»¶%så¤±è´¥!\n";
+const char * const FileOperationError = "æ–‡ä»¶%sæ“ä½œå¤±è´¥!\n";
+const char * const FileNameTooLong = "æ–‡ä»¶åè¿‡é•¿\n";
+const char * const FileNameError = "æ–‡ä»¶ååŒ…å«éæ³•å­—ç¬¦: %s\n";
+const char * const MemoryNotEnough = "å†…å­˜ä¸è¶³!\n";
 
-static const char * const EmptyTree = "¿ÕÊ÷\n";
-static const char * const FullTree = "ÒÑÖÁÊıÁ¿×î´óÖµ ÇëÀ©³äMax»òElemNumbÊı¾İµ¥Î»!\n";
-static const char * const LengthError = "¶ş²æÊ÷½áµãÊı·Ç·¨\n";
-static const char * const DLR = " of DLR"; // Ç°Ğò±éÀú
-static const char * const LDR = " of LDR"; // ÖĞĞò±éÀú
-static const char * const LRD = " of LRD"; // ºóĞò±éÀú
-static const char * const level = " with LEVEL"; // ²ãĞò±éÀú
+static const char * const EmptyTree = "ç©ºæ ‘\n";
+static const char * const FullTree = "å·²è‡³æ•°é‡æœ€å¤§å€¼ è¯·æ‰©å……Maxæˆ–ElemNumbæ•°æ®å•ä½!\n";
+static const char * const LengthError = "äºŒå‰æ ‘ç»“ç‚¹æ•°éæ³•\n";
+static const char * const DLR = " of DLR"; // å‰åºéå†
+static const char * const LDR = " of LDR"; // ä¸­åºéå†
+static const char * const LRD = " of LRD"; // ååºéå†
+static const char * const level = " with LEVEL"; // å±‚åºéå†
 
 #ifdef AVL_BINARY_TREE
 	static void RotateWithLeftChild(TreeNode ** const k2pt);
@@ -83,7 +83,7 @@ void CreateBinaryTree(Tree * const tree, const ElemNumb Max, const char * const 
 		if (Max > 0)
 		{
 			tree->MaxSize = Max;
-			printf("\n¶¯Ì¬ËÑË÷Æ½ºâ¶ş²æÊ÷\t%s\t±¾ÀıÖĞÒÔ0xÆğÊ¼µÄÊı×Ö¾ùÎªÄÚ´æµØÖ·\n", sizeof(void *) == 4 ? "x86" : "x64");
+			printf("\nåŠ¨æ€æœç´¢å¹³è¡¡äºŒå‰æ ‘\t%s\tæœ¬ä¾‹ä¸­ä»¥0xèµ·å§‹çš„æ•°å­—å‡ä¸ºå†…å­˜åœ°å€\n", sizeof(void *) == 4 ? "x86" : "x64");
 
 			// if (FileName != NULL)
 			if (FileName)
@@ -185,7 +185,7 @@ void DestroyBinaryTree(Tree * const tree)
 	if (tree)
 	{
 		// if (tree->size != 0)
-		if (tree->size) // ¶ş²æÊ÷·Ç¿Õ
+		if (tree->size) // äºŒå‰æ ‘éç©º
 		{
 			DeleteAllNodes(tree->root);
 			tree->root = NULL;
@@ -240,19 +240,19 @@ const bool BinaryTreeIsFull(const Tree * const tree)
 	}
 }
 
-// ¶¨Î»treeÊ÷ÖĞµÄpiÎ»ÖÃ
+// å®šä½treeæ ‘ä¸­çš„piä½ç½®
 Pair SearchBinaryTreeItem(const Tree * const tree, const TreeItem * const pi)
 {
 	// if (tree != NULL && pi != NULL)
 	if (tree && pi)
 	{
-		Pair result = { NULL, tree->root }; // ³õÊ¼Ö¸Ïò¸ù
+		Pair result = { NULL, tree->root }; // åˆå§‹æŒ‡å‘æ ¹
 
 		// if (tree->size != 0)
-		if (tree->size) // ·Ç¿ÕÊ÷
+		if (tree->size) // éç©ºæ ‘
 		{
 			// while (result.child != NULL)
-			while (result.child) // µ±Ç°½áµã·Ç¿Õ
+			while (result.child) // å½“å‰ç»“ç‚¹éç©º
 			{
 				if (pi->KeyValue < result.child->item.KeyValue)
 				{
@@ -267,7 +267,7 @@ Pair SearchBinaryTreeItem(const Tree * const tree, const TreeItem * const pi)
 				}
 					
 				// if (pi->KeyValue == result.child->item.KeyValue)
-				else // ÈôÇ°Á½ÖÖÇé¿ö¾ù²»Âú×ã,±Ø¶¨Îªµ±Ç°½áµãÓë*piÏàµÈ
+				else // è‹¥å‰ä¸¤ç§æƒ…å†µå‡ä¸æ»¡è¶³,å¿…å®šä¸ºå½“å‰ç»“ç‚¹ä¸*piç›¸ç­‰
 					break;
 			}
 
@@ -275,7 +275,7 @@ Pair SearchBinaryTreeItem(const Tree * const tree, const TreeItem * const pi)
 		}
 
 		// if (tree->size == 0)
-		else // ¿ÕÊ÷
+		else // ç©ºæ ‘
 			return result;
 	}
 
@@ -298,7 +298,7 @@ void AddBinaryTreeNode(Tree * const tree, const TreeItem * const pi)
 	if (tree && pi)
 	{
 		// if (pi->KeyValue != 0)
-		if (pi->KeyValue) // ÒòÎªÔÚ¶ş²æÊ÷ÀïµÄÊı¾İ0±»ÈÏÎªÊÇNULL¹Ê²»ÄÜÎª0
+		if (pi->KeyValue) // å› ä¸ºåœ¨äºŒå‰æ ‘é‡Œçš„æ•°æ®0è¢«è®¤ä¸ºæ˜¯NULLæ•…ä¸èƒ½ä¸º0
 		{
 			if (tree->size != tree->MaxSize)
 			{
@@ -306,7 +306,7 @@ void AddBinaryTreeNode(Tree * const tree, const TreeItem * const pi)
 				Pair result = SearchBinaryTreeItem(tree, pi);
 
 				// if (result.child == NULL)
-				if (!result.child) // Èô¶ş²æÊ÷ÖĞ²»´æÔÚ*pi
+				if (!result.child) // è‹¥äºŒå‰æ ‘ä¸­ä¸å­˜åœ¨*pi
 				{
 #endif
 
@@ -321,13 +321,13 @@ void AddBinaryTreeNode(Tree * const tree, const TreeItem * const pi)
 				}
 
 				// if (result.child != NULL)
-				else // Èô¶ş²æÊ÷ÖĞÒÑÓĞ*pi
+				else // è‹¥äºŒå‰æ ‘ä¸­å·²æœ‰*pi
 					UnusualToExit(SameTreeItem, NULL);
 #endif
 			}
 
 			// if (tree->size == tree->MaxSize)
-			else // ½áµãÊıÒÑÖÁ×î´óÖµ
+			else // ç»“ç‚¹æ•°å·²è‡³æœ€å¤§å€¼
 				UnusualToExit(FullTree, NULL);
 		}
 
@@ -350,21 +350,21 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 		Pair result = SearchBinaryTreeItem(tree, pi);
 		
 		// if (result.child != NULL)
-		if (result.child) // ¶ş²æÊ÷ÖĞ´æÔÚ¸Ã½áµã
+		if (result.child) // äºŒå‰æ ‘ä¸­å­˜åœ¨è¯¥ç»“ç‚¹
 		{
 			// if (result.child->left != NULL && result.child->right != NULL)
-			if (result.child->left && result.child->right) // ÈôÓûÉ¾½áµãÓĞÁ½¸ö×Ó½áµã
+			if (result.child->left && result.child->right) // è‹¥æ¬²åˆ ç»“ç‚¹æœ‰ä¸¤ä¸ªå­ç»“ç‚¹
 			{
 				TreeNode *q;
 
-				// ÒÔÏÂ2Ñ¡1
+				// ä»¥ä¸‹2é€‰1
 
-				// ·½·¨1
-				// for (q = result.child->right; q->left != NULL; q = q->left) ±¾ĞĞÎª×¢ÊÍ
+				// æ–¹æ³•1
+				// for (q = result.child->right; q->left != NULL; q = q->left) æœ¬è¡Œä¸ºæ³¨é‡Š
 				for (q = result.child->right; q->left; q = q->left)
 
-				// ·½·¨2
-				// for (q = result.child->left; q->right != NULL; q = q->right) ±¾ĞĞÎª×¢ÊÍ
+				// æ–¹æ³•2
+				// for (q = result.child->left; q->right != NULL; q = q->right) æœ¬è¡Œä¸ºæ³¨é‡Š
 				// for (q = result.child->left; q->right; q = q->right)
 					;
 	#ifdef BACKWARD_POINTER
@@ -378,7 +378,7 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 				q->father = result.parent;
 	#endif
 				// if (result.parent != NULL)
-				if (result.parent) // ÓûÉ¾³ıµÄ½áµã·Ç¸ù½áµã
+				if (result.parent) // æ¬²åˆ é™¤çš„ç»“ç‚¹éæ ¹ç»“ç‚¹
 				{
 					if (result.parent->item.KeyValue > result.child->item.KeyValue)
 						result.parent->left = q;
@@ -389,7 +389,7 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 				}
 
 				// if (result.parent == NULL)
-				else // ÓûÉ¾³ıµÄ½áµãÎª¸ù½áµã
+				else // æ¬²åˆ é™¤çš„ç»“ç‚¹ä¸ºæ ¹ç»“ç‚¹
 					tree->root = q;
 
 				q->left = result.child->left;
@@ -402,10 +402,10 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 			}
 
 			// else if (result.child->left == NULL && result.child->right == NULL)
-			else if (!result.child->left && !result.child->right) // ÈôÓûÉ¾³ı½áµãÎŞ×Ó½áµã
+			else if (!result.child->left && !result.child->right) // è‹¥æ¬²åˆ é™¤ç»“ç‚¹æ— å­ç»“ç‚¹
 			{
 				// if (result.parent != NULL)
-				if (result.parent) // ÈôÓûÉ¾³ı½áµã·Ç¸ù½áµã
+				if (result.parent) // è‹¥æ¬²åˆ é™¤ç»“ç‚¹éæ ¹ç»“ç‚¹
 				{
 					if (result.child->item.KeyValue < result.parent->item.KeyValue)
 						result.parent->left = NULL;
@@ -416,19 +416,19 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 				}
 
 				// if (result.parent == NULL)
-				else // ÈôÓû³ıÉ¾³ı½áµãÎª¸ù½áµã ¼´¶ş²æÊ÷½öÒ»¸ö½áµã
+				else // è‹¥æ¬²é™¤åˆ é™¤ç»“ç‚¹ä¸ºæ ¹ç»“ç‚¹ å³äºŒå‰æ ‘ä»…ä¸€ä¸ªç»“ç‚¹
 				{
 					tree->root = NULL;
 				}
 			}
 
-			else // ÈôÓûÉ¾³ı½áµã½öÒ»¸ö×Ó½áµã
+			else // è‹¥æ¬²åˆ é™¤ç»“ç‚¹ä»…ä¸€ä¸ªå­ç»“ç‚¹
 			{
 				// if (result.child->left != NULL)
-				if (result.child->left) // ÈôÓûÉ¾³ı½áµã½öÒ»¸ö×ó×Ó½áµã
+				if (result.child->left) // è‹¥æ¬²åˆ é™¤ç»“ç‚¹ä»…ä¸€ä¸ªå·¦å­ç»“ç‚¹
 				{
 					// if (result.parent != NULL)
-					if (result.parent) // ÈôÓûÉ¾³ı½áµã·Ç¸ù½áµã
+					if (result.parent) // è‹¥æ¬²åˆ é™¤ç»“ç‚¹éæ ¹ç»“ç‚¹
 					{
 
 	#ifdef BACKWARD_POINTER
@@ -441,7 +441,7 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 							result.parent->right = result.child->left;
 					}
 					// if (result.parent == NULL)
-					else // ÈôÓûÉ¾³ı½áµãÎª¸ù½áµã
+					else // è‹¥æ¬²åˆ é™¤ç»“ç‚¹ä¸ºæ ¹ç»“ç‚¹
 					{
 	#ifdef BACKWARD_POINTER
 						result.child->left->father = NULL;
@@ -451,10 +451,10 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 				}
 
 				// if (result.chile->right != NULL)
-				else // ÈôÓûÉ¾³ı½áµã½öÒ»¸öÓÒ×Ó½áµã
+				else // è‹¥æ¬²åˆ é™¤ç»“ç‚¹ä»…ä¸€ä¸ªå³å­ç»“ç‚¹
 				{
 					// if (result.parent != NULL)
-					if (result.parent) // ÈôÓûÉ¾³ı½áµã·Ç¸ù½áµã
+					if (result.parent) // è‹¥æ¬²åˆ é™¤ç»“ç‚¹éæ ¹ç»“ç‚¹
 					{
 	#ifdef BACKWARD_POINTER
 						result.child->right->father = result.parent;
@@ -466,7 +466,7 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 							result.parent->right = result.child->right;
 					}
 					// if (result.parent == NULL)
-					else // ÈôÓû³ıÉ¾³ı½áµãÎª¸ù½áµã
+					else // è‹¥æ¬²é™¤åˆ é™¤ç»“ç‚¹ä¸ºæ ¹ç»“ç‚¹
 					{
 	#ifdef BACKWARD_POINTER
 						result.child->right->father = NULL;
@@ -481,7 +481,7 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 		}
 
 		// if (result.child == NULL)
-			else // ¶ş²æÊ÷ÖĞ²»´æÔÚ¸Ã½áµã
+			else // äºŒå‰æ ‘ä¸­ä¸å­˜åœ¨è¯¥ç»“ç‚¹
 		UnusualToExit(NoTreeItem, NULL);
 	}
 
@@ -489,11 +489,11 @@ void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi)
 	else
 		UnusualToExit(NullPointer, NULL);
 #else
-	UnusualToExit("½«³ÌĞòÎ¢µ÷ÇøÄÚµÄAVL_BINARY_TREEÉèÎª¹Ø\n", NULL);
+	UnusualToExit("å°†ç¨‹åºå¾®è°ƒåŒºå†…çš„AVL_BINARY_TREEè®¾ä¸ºå…³\n", NULL);
 #endif
 }
 
-// ÎÄ¼şÊäÈë/Êä³ö²Ù×÷
+// æ–‡ä»¶è¾“å…¥/è¾“å‡ºæ“ä½œ
 void FileOperationByBinaryTree(Tree * const tree, const char * const mode)
 {
 	// if (tree != NULL && mode != NULL)
@@ -520,7 +520,7 @@ void FileOperationByBinaryTree(Tree * const tree, const char * const mode)
 		UnusualToExit(NullPointer, NULL);
 }
 
-// ¼üÅÌÊäÈë
+// é”®ç›˜è¾“å…¥
 void InputBinaryTreeFromKeyboard(Tree * const tree, FILE * const stream)
 {
 	// if (tree != NULL && stream != NULL)
@@ -577,15 +577,15 @@ void OutputBinaryTreeToMonitor(const Tree * const tree, FILE * const stream, con
 		// if (stream == stdout || (stream != stdout && (strcmp(str, tree->DLRFileName)== 0)))
 		if (stream == stdout || (stream != stdout && (!strcmp(str, tree->DLRFileName))))
 		{
-			// ÒÔÏÂ3Ñ¡1
+			// ä»¥ä¸‹3é€‰1
 
-			// ·½·¨1
+			// æ–¹æ³•1
 			// PreOrderTraversal(tree, stream);
 
-			// ·½·¨2
+			// æ–¹æ³•2
 			Traversal(PreOrderTraversal, tree, stream);
 
-			// ·½·¨3
+			// æ–¹æ³•3
 			// void(*pf) (const Tree * const tree, FILE * const stream);
 			// pf = PreOrderTraversal;
 			// pf(tree, stream); // (*pf)(tree, stream);
@@ -594,15 +594,15 @@ void OutputBinaryTreeToMonitor(const Tree * const tree, FILE * const stream, con
 		// if (stream == stdout || (stream != stdout && (strcmp(str, tree->LDRFileName)== 0)))
 		if (stream == stdout || (stream != stdout && (!strcmp(str, tree->LDRFileName))))
 		{
-			// ÒÔÏÂ3Ñ¡1
+			// ä»¥ä¸‹3é€‰1
 
-			// ·½·¨1
+			// æ–¹æ³•1
 			// InOrderTraversal(tree, stream);
 
-			// ·½·¨2
+			// æ–¹æ³•2
 			Traversal(InOrderTraversal, tree, stream);
 
-			// ·½·¨3
+			// æ–¹æ³•3
 			// void (*pf) (const Tree * const tree, FILE * const stream);
 			// pf = InOrderTraversal;
 			// pf(tree, stream); // (*pf)(tree, stream);
@@ -611,15 +611,15 @@ void OutputBinaryTreeToMonitor(const Tree * const tree, FILE * const stream, con
 		// if (stream == stdout || (stream != stdout && (strcmp(str, tree->LRDFileName)== 0)))
 		if (stream == stdout || (stream != stdout && (!strcmp(str, tree->LRDFileName))))
 		{
-			// ÒÔÏÂ3Ñ¡1
+			// ä»¥ä¸‹3é€‰1
 
-			// ·½·¨1
+			// æ–¹æ³•1
 			// PostOrderTraversal(tree, stream);
 
-			// ·½·¨2
+			// æ–¹æ³•2
 			Traversal(PostOrderTraversal, tree, stream);
 
-			// ·½·¨3
+			// æ–¹æ³•3
 			// void (*pf) (const Tree * const tree, FILE * const stream);
 			// pf = PostOrderTraversal;
 			// pf(tree, stream); // (*pf)(tree, stream);
@@ -628,15 +628,15 @@ void OutputBinaryTreeToMonitor(const Tree * const tree, FILE * const stream, con
 		// if (stream == stdout || (stream != stdout && (strcmp(str, tree->FileName)== 0)))
 		if (stream == stdout || (stream != stdout && (!strcmp(str, tree->FileName))))
 		{
-			// ÒÔÏÂ3Ñ¡1
+			// ä»¥ä¸‹3é€‰1
 
-			// ·½·¨1
+			// æ–¹æ³•1
 			// LevelOrderTraversal(tree, stream);
 
-			// ·½·¨2
+			// æ–¹æ³•2
 			Traversal(LevelOrderTraversal, tree, stream);
 
-			// ·½·¨3
+			// æ–¹æ³•3
 			// void (*pf) (const Tree * const tree, FILE * const stream);
 			// pf = LevelOrderTraversal;
 			// pf(tree, stream); // (*pf)(tree, stream);
@@ -656,7 +656,7 @@ void GetMinOfBinaryTree(const Tree * const tree, TreeItem * const item)
 		const TreeNode *pt = tree->root;
 
 		// if (pt != NULL)
-		if (pt) // Ê÷·Ç¿Õ
+		if (pt) // æ ‘éç©º
 		{
 			// while (pt->left != NULL)
 			while (pt->left)
@@ -665,7 +665,7 @@ void GetMinOfBinaryTree(const Tree * const tree, TreeItem * const item)
 		}
 
 		// if (pt == NULL)
-		else // ¿ÕÊ÷
+		else // ç©ºæ ‘
 			UnusualToExit(EmptyTree, NULL);
 	}
 
@@ -682,7 +682,7 @@ void GetMaxOfBinaryTree(const Tree * const tree, TreeItem * const item)
 		const TreeNode *pt = tree->root;
 
 		// if (pt != NULL)
-		if (pt) // Ê÷·Ç¿Õ
+		if (pt) // æ ‘éç©º
 		{
 			// while (pt->right != NULL)
 			while (pt->right)
@@ -691,7 +691,7 @@ void GetMaxOfBinaryTree(const Tree * const tree, TreeItem * const item)
 		}
 
 		// if (pt == NULL)
-		else // ¿ÕÊ÷
+		else // ç©ºæ ‘
 			UnusualToExit(EmptyTree, NULL);
 	}
 
@@ -748,7 +748,7 @@ void CheckFileName(const char * const FullFileName)
 		UnusualToExit(NullPointer, NULL);
 }
 
-/********************************Ë½ÓĞº¯Êı********************************/
+/********************************ç§æœ‰å‡½æ•°********************************/
 
 static void DeleteAllNodes(TreeNode * const root)
 {
@@ -768,7 +768,7 @@ static void AddNodeWithBackwardPointer(TreeNode ** const ptr, const TreeItem * c
 	TreeNode *t = *ptr;
 
 	// if (t == NULL)
-	if (!t) // ¿ÕÊ÷
+	if (!t) // ç©ºæ ‘
 	{
 		t = *ptr = (TreeNode *)malloc(sizeof(TreeNode));
 
@@ -785,16 +785,16 @@ static void AddNodeWithBackwardPointer(TreeNode ** const ptr, const TreeItem * c
 			UnusualToExit(MemoryNotEnough, NULL);
 	}
 
-	// ·Ç¿ÕÊ÷
+	// éç©ºæ ‘
 	// if (t != NULL)
-	else if (pi->KeyValue < t->item.KeyValue) // ÈôĞÂÔªËØ < ×ÓÊ÷¸ù
+	else if (pi->KeyValue < t->item.KeyValue) // è‹¥æ–°å…ƒç´  < å­æ ‘æ ¹
 	{
-		AddNodeWithBackwardPointer(&t->left, pi, t); // Íù×ó×ÓÊ÷ÉÏ²å
+		AddNodeWithBackwardPointer(&t->left, pi, t); // å¾€å·¦å­æ ‘ä¸Šæ’
 	#ifdef AVL_BINARY_TREE
 		if (GetTreeHeight(t->left) - GetTreeHeight(t->right) == 2)
 		{
 			if (pi->KeyValue < t->left->item.KeyValue)
-				RotateWithLeftChild(ptr); // ÓÒµ¥×ª
+				RotateWithLeftChild(ptr); // å³å•è½¬
 
 			// if (pi->KeyValue > t->left->item.KeyValue)
 			else
@@ -803,24 +803,24 @@ static void AddNodeWithBackwardPointer(TreeNode ** const ptr, const TreeItem * c
 	#endif
 	}
 
-	else if (pi->KeyValue > t->item.KeyValue) // ÈôĞÂÔªËØ > ×ÓÊ÷¸ù
+	else if (pi->KeyValue > t->item.KeyValue) // è‹¥æ–°å…ƒç´  > å­æ ‘æ ¹
 	{
-		AddNodeWithBackwardPointer(&t->right, pi, t); // ÍùÓÒ×ÓÊ÷ÉÏ²å
+		AddNodeWithBackwardPointer(&t->right, pi, t); // å¾€å³å­æ ‘ä¸Šæ’
 	#ifdef AVL_BINARY_TREE
 		if (GetTreeHeight(t->right) - GetTreeHeight(t->left) == 2)
 		{
 			if (pi->KeyValue > t->right->item.KeyValue)
-				RotateWithRightChild(ptr); // ×óµ¥×ª
+				RotateWithRightChild(ptr); // å·¦å•è½¬
 
 			// if (pi->KeyValue < t->right->item.KeyValue)
 			else
-				DoubleWithRightChild(ptr); // ×ó×ª,ºóÓÒ×ª
+				DoubleWithRightChild(ptr); // å·¦è½¬,åå³è½¬
 		}
 	#endif
 	}
 
 	else
-		UnusualToExit(SameTreeItem, NULL); // Ê÷ÖĞÒÑÓĞ¸Ã½áµã
+		UnusualToExit(SameTreeItem, NULL); // æ ‘ä¸­å·²æœ‰è¯¥ç»“ç‚¹
 	#ifdef AVL_BINARY_TREE
 		t->height = GetMax(GetTreeHeight(t->left), GetTreeHeight(t->right)) + 1;
 	#endif
@@ -833,7 +833,7 @@ static void AddNodeWithoutBackwardPointer(TreeNode ** const ptr, const TreeItem 
 	TreeNode *t = *ptr;
 
 	// if (t == NULL)
-	if (!t) // ¿ÕÊ÷
+	if (!t) // ç©ºæ ‘
 	{
 		t = *ptr = (TreeNode *)malloc(sizeof(TreeNode));
 
@@ -849,16 +849,16 @@ static void AddNodeWithoutBackwardPointer(TreeNode ** const ptr, const TreeItem 
 			UnusualToExit(MemoryNotEnough, NULL);
 	}
 
-	// ·Ç¿ÕÊ÷
+	// éç©ºæ ‘
 	// if (t != NULL)
-	else if (pi->KeyValue < t->item.KeyValue) // ÈôĞÂÔªËØ < ×ÓÊ÷¸ù
+	else if (pi->KeyValue < t->item.KeyValue) // è‹¥æ–°å…ƒç´  < å­æ ‘æ ¹
 	{
-		AddNodeWithoutBackwardPointer(&t->left, pi); // Íù×ó×ÓÊ÷ÉÏ²å
+		AddNodeWithoutBackwardPointer(&t->left, pi); // å¾€å·¦å­æ ‘ä¸Šæ’
 	#ifdef AVL_BINARY_TREE
 		if (GetTreeHeight(t->left) - GetTreeHeight(t->right) == 2)
 		{
 			if (pi->KeyValue < t->left->item.KeyValue)
-				RotateWithLeftChild(ptr); // ÓÒµ¥×ª
+				RotateWithLeftChild(ptr); // å³å•è½¬
 
 			// if (pi->KeyValue > t->left->item.KeyValue)
 			else
@@ -867,24 +867,24 @@ static void AddNodeWithoutBackwardPointer(TreeNode ** const ptr, const TreeItem 
 	#endif
 	}
 
-	else if (pi->KeyValue > t->item.KeyValue) // ÈôĞÂÔªËØ > ×ÓÊ÷¸ù
+	else if (pi->KeyValue > t->item.KeyValue) // è‹¥æ–°å…ƒç´  > å­æ ‘æ ¹
 	{
-		AddNodeWithoutBackwardPointer(&t->right, pi); // ÍùÓÒ×ÓÊ÷ÉÏ²å
+		AddNodeWithoutBackwardPointer(&t->right, pi); // å¾€å³å­æ ‘ä¸Šæ’
 	#ifdef AVL_BINARY_TREE
 		if (GetTreeHeight(t->right) - GetTreeHeight(t->left) == 2)
 		{
 			if (pi->KeyValue > t->right->item.KeyValue)
-				RotateWithRightChild(ptr); // ×óµ¥×ª
+				RotateWithRightChild(ptr); // å·¦å•è½¬
 
 			// if (pi->KeyValue < t->right->item.KeyValue)
 			else
-				DoubleWithRightChild(ptr); // ×ó×ª,ºóÓÒ×ª
+				DoubleWithRightChild(ptr); // å·¦è½¬,åå³è½¬
 		}
 	#endif
 	}
 
 	else
-		; // Ê÷ÖĞÒÑÓĞ¸Ã½áµã
+		; // æ ‘ä¸­å·²æœ‰è¯¥ç»“ç‚¹
 	#ifdef AVL_BINARY_TREE
 		t->height = GetMax(GetTreeHeight(t->left), GetTreeHeight(t->right)) + 1;
 	#endif
@@ -910,12 +910,12 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 #endif
 		{
 			// if (strcmp(mode, WRITE) == 0)
-			if (!strcmp(mode, WRITE)) // ÎÄ¼şÊä³ö
+			if (!strcmp(mode, WRITE)) // æ–‡ä»¶è¾“å‡º
 #ifdef CAN_OPEN_FILE
 				OutputBinaryTreeToMonitor(tree, FilePointer, FileName);
 #else
 			{
-				// Êä³öÎª¶ş½øÖÆÎÄ¼ş
+				// è¾“å‡ºä¸ºäºŒè¿›åˆ¶æ–‡ä»¶
 				TreeItem * const buffer = (TreeItem *)malloc(((1 << ((sizeof(ElemNumb) << 3) - 1)) - 1) * sizeof(TreeItem));
 				
 				// if (buffer != NULL)
@@ -926,7 +926,7 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 					{
 						LinkList Link;
 						CreateListByLink(&Link, (ElemNumb)(((long long)(1 << ((sizeof(ElemNumb) << 3) - 1))) - 1), NULL);
-						EnQueue(&Link, tree->root); // Èë¶Ó
+						EnQueue(&Link, tree->root); // å…¥é˜Ÿ
 						LinkItem temp;
 						ElemNumb size = 0, n = 2;
 						TreeNode NullItem = {
@@ -943,7 +943,7 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 						
 						do
 						{
-							DeQueue(&Link, &temp); // ³ö¶Ó
+							DeQueue(&Link, &temp); // å‡ºé˜Ÿ
 							buffer[size++].KeyValue = temp->item.KeyValue;
 							
 							// if (temp->left != NULL)
@@ -962,7 +962,7 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 							else
 								EnQueue(&Link, &NullItem);
 
-							if (Link.size == n) // ¶ÓÁĞÖĞÔªËØÊıÁ¿Îª2µÄn´ÎÃİ
+							if (Link.size == n) // é˜Ÿåˆ—ä¸­å…ƒç´ æ•°é‡ä¸º2çš„næ¬¡å¹‚
 								n <<= 1; // n = 2 * n;
 						} // while (QueueIsAllNull(&Link) == false);
 						while (!QueueIsAllNull(&Link));
@@ -979,12 +979,12 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 #endif
 
 			// if (strcmp(mode, READ) == 0)
-			if (!strcmp(mode, READ)) // ÎÄ¼şÊäÈë
+			if (!strcmp(mode, READ)) // æ–‡ä»¶è¾“å…¥
 #ifdef CAN_OPEN_FILE
 				InputBinaryTreeFromKeyboard(tree, FilePointer);
 #else
 			{
-				// ´Ó¶ş½øÖÆÎÄ¼şÊäÈë
+				// ä»äºŒè¿›åˆ¶æ–‡ä»¶è¾“å…¥
 				TreeItem * const buffer = (TreeItem *)malloc(((1 << ((sizeof(ElemNumb) << 3) - 1)) - 1) * sizeof(TreeItem));
 				
 				// if (buffer != NULL)
@@ -1027,27 +1027,27 @@ static void MoreFileOperationByBinaryTree(Tree * const tree, const char * const 
 		UnusualToExit(NullPointer, NULL);
 }
 
-// Ç°Ğò±éÀú
+// å‰åºéå†
 static void PreOrderTraversal(const Tree * const tree, FILE * const stream)
 {
 	// if (tree != NULL && stream != NULL)
 	if (tree && stream)
 	{
-		// ·Çµİ¹éËã·¨
+		// éé€’å½’ç®—æ³•
 		ArrayList S;
 #ifdef DEBUG
 		const char * const FileName = "DLR with stack.txt";
 #else
 		const char * const FileName = NULL;
 #endif
-		// ´´½¨²¢³õÊ¼»¯¶ÑÕ»S
+		// åˆ›å»ºå¹¶åˆå§‹åŒ–å †æ ˆS
 		CreateListByArray(&S, tree->size, FileName);
 #ifdef WINDOWS_VISUALSTUDIO
-		fprintf_s(stream, "\nÇ°Ğò±éÀú (¸ù->×ó×Ó->ÓÒ×Ó)\n");
+		fprintf_s(stream, "\nå‰åºéå† (æ ¹->å·¦å­->å³å­)\n");
 #else
-		fprintf(stream, "\nÇ°Ğò±éÀú (¸ù->×ó×Ó->ÓÒ×Ó)\n");
+		fprintf(stream, "\nå‰åºéå† (æ ¹->å·¦å­->å³å­)\n");
 #endif
-		const TreeNode *temp = tree->root; // ³õÊ¼TÎªÊ÷¸ùµØÖ·
+		const TreeNode *temp = tree->root; // åˆå§‹Tä¸ºæ ‘æ ¹åœ°å€
 		TreeNode TEMP;
 		ElemNumb sum = 0;
 		
@@ -1055,12 +1055,12 @@ static void PreOrderTraversal(const Tree * const tree, FILE * const stream)
 		while (temp || S.size)
 		{
 			// while (temp != NULL)
-			while (temp) // Ò»Ö±Ïò×ó²¢½«ÑØÍ¾½áµãÑ¹Èë¶ÑÕ»
+			while (temp) // ä¸€ç›´å‘å·¦å¹¶å°†æ²¿é€”ç»“ç‚¹å‹å…¥å †æ ˆ
 			{
 #ifdef WINDOWS_VISUALSTUDIO
-				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #else
-				fprintf(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #endif	
 				++sum;
 				Push(&S, temp);
@@ -1072,11 +1072,11 @@ static void PreOrderTraversal(const Tree * const tree, FILE * const stream)
 			// if (S.size != 0)
 			if (S.size)
 			{
-				Pop(&S, &TEMP); // ½áµãµ¯³ö¶ÑÕ»
+				Pop(&S, &TEMP); // ç»“ç‚¹å¼¹å‡ºå †æ ˆ
 #ifdef DEBUG
 				TextFileAppendOperationByArray(&S);
 #endif
-				temp = TEMP.right; // ×ªÏòÓÒ×ÓÊ÷
+				temp = TEMP.right; // è½¬å‘å³å­æ ‘
 			}
 		}
 		DestroyListByArray(&S);
@@ -1087,25 +1087,25 @@ static void PreOrderTraversal(const Tree * const tree, FILE * const stream)
 		UnusualToExit(NullPointer, NULL);
 }
 
-// ÖĞĞò±éÀú
+// ä¸­åºéå†
 static void InOrderTraversal(const Tree * const tree, FILE * const stream)
 {
 	// if (tree != NULL && stream != NULL)
 	if (tree && stream)
 	{
-		// ·Çµİ¹éËã·¨
+		// éé€’å½’ç®—æ³•
 		ArrayList S;
 #ifdef DEBUG
 		const char * const FileName = "LDR with stack.txt";
 #else
 		const char * const FileName = NULL;
 #endif
-		// ´´½¨²¢³õÊ¼»¯¶ÑÕ»S
+		// åˆ›å»ºå¹¶åˆå§‹åŒ–å †æ ˆS
 		CreateListByArray(&S, tree->size, FileName);
 #ifdef WINDOWS_VISUALSTUDIO
-		fprintf_s(stream, "\nÖĞĞò±éÀú (×ó×Ó->¸ù->ÓÒ×Ó)\n");
+		fprintf_s(stream, "\nä¸­åºéå† (å·¦å­->æ ¹->å³å­)\n");
 #else
-		fprintf(stream, "\nÖĞĞò±éÀú (×ó×Ó->¸ù->ÓÒ×Ó)\n");
+		fprintf(stream, "\nä¸­åºéå† (å·¦å­->æ ¹->å³å­)\n");
 #endif
 		const TreeNode *T = tree->root;
 		const TreeNode *temp;
@@ -1116,7 +1116,7 @@ static void InOrderTraversal(const Tree * const tree, FILE * const stream)
 		while (T || S.size)
 		{
 			// while (T != NULL)
-			while (T) // Ò»Ö±Ïò×ó²¢½«ÑØÍ¾½áµãÑ¹Èë¶ÑÕ»
+			while (T) // ä¸€ç›´å‘å·¦å¹¶å°†æ²¿é€”ç»“ç‚¹å‹å…¥å †æ ˆ
 			{
 				Push(&S, T);
 #ifdef DEBUG
@@ -1128,18 +1128,18 @@ static void InOrderTraversal(const Tree * const tree, FILE * const stream)
 			// if (S.size != 0)
 			if (S.size)
 			{
-				Pop(&S, &TEMP); // ½áµãµ¯³ö¶ÑÕ»
+				Pop(&S, &TEMP); // ç»“ç‚¹å¼¹å‡ºå †æ ˆ
 #ifdef DEBUG
 				TextFileAppendOperationByArray(&S);
 #endif
 				temp = &TEMP;
 #ifdef WINDOWS_VISUALSTUDIO
-				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #else
-				fprintf(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #endif
 				++sum;
-				T = temp->right; // ×ªÏòÓÒ×ÓÊ÷
+				T = temp->right; // è½¬å‘å³å­æ ‘
 			}
 		}
 		DestroyListByArray(&S);
@@ -1150,7 +1150,7 @@ static void InOrderTraversal(const Tree * const tree, FILE * const stream)
 		UnusualToExit(NullPointer, NULL);
 }
 
-// ºóĞò±éÀú
+// ååºéå†
 static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 {
 	// if (tree != NULL && stream != NULL)
@@ -1159,8 +1159,8 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 		// if (tree->size != 0)
 		if (tree->size)
 		{
-			// ·Çµİ¹éËã·¨
-			// ´´½¨²¢³õÊ¼»¯¶ÑÕ»S Q
+			// éé€’å½’ç®—æ³•
+			// åˆ›å»ºå¹¶åˆå§‹åŒ–å †æ ˆS Q
 			ArrayList S;
 			CreateListByArray(&S, tree->size, NULL);
 #ifdef DEBUG
@@ -1169,11 +1169,11 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 			const char * const FileName = NULL;
 #endif
 			ArrayList Q;
-			CreateListByArray(&Q, tree->size, FileName); // ´´½¨²¢³õÊ¼»¯¶ÑÕ»Q£¬ÓÃÓÚ·´ÏòÊä³ö
+			CreateListByArray(&Q, tree->size, FileName); // åˆ›å»ºå¹¶åˆå§‹åŒ–å †æ ˆQï¼Œç”¨äºåå‘è¾“å‡º
 #ifdef WINDOWS_VISUALSTUDIO
-			fprintf_s(stream, "\nºóĞò±éÀú (×ó×Ó->ÓÒ×Ó->¸ù)\n");
+			fprintf_s(stream, "\nååºéå† (å·¦å­->å³å­->æ ¹)\n");
 #else
-			fprintf(stream, "\nºóĞò±éÀú (×ó×Ó->ÓÒ×Ó->¸ù)\n");
+			fprintf(stream, "\nååºéå† (å·¦å­->å³å­->æ ¹)\n");
 #endif
 			const TreeNode *T = tree->root;
 			TreeNode TEMP;
@@ -1184,10 +1184,10 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 			while (T || S.size)
 			{
 				// while (T != NULL)
-				while (T) // Ò»Ö±ÏòÓÒ²¢½«ÑØÍ¾½áµãÑ¹Èë¶ÑÕ»
+				while (T) // ä¸€ç›´å‘å³å¹¶å°†æ²¿é€”ç»“ç‚¹å‹å…¥å †æ ˆ
 				{
 					Push(&S, T);
-					Push(&Q, T); // ½«±éÀúµ½µÄ½áµãÑ¹Õ»£¬ÓÃÓÚ·´Ïò
+					Push(&Q, T); // å°†éå†åˆ°çš„ç»“ç‚¹å‹æ ˆï¼Œç”¨äºåå‘
 #ifdef DEBUG
 					TextFileAppendOperationByArray(&Q);
 #endif
@@ -1197,8 +1197,8 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 				// if (S.size != 0)
 				if (S.size)
 				{
-					Pop(&S, &TEMP); // ½áµãµ¯³ö¶ÑÕ»
-					T = TEMP.left; // ×ªÏò×ó×ÓÊ÷
+					Pop(&S, &TEMP); // ç»“ç‚¹å¼¹å‡ºå †æ ˆ
+					T = TEMP.left; // è½¬å‘å·¦å­æ ‘
 				}
 			}
 			
@@ -1211,9 +1211,9 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 #endif
 				temp = &TEMP;
 #ifdef WINDOWS_VISUALSTUDIO
-				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf_s(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #else
-				fprintf(stream, OUTPUT_FORMAT, '\n'); // Êä³ö½áµã
+				fprintf(stream, OUTPUT_FORMAT, '\n'); // è¾“å‡ºç»“ç‚¹
 #endif
 				++sum;
 			}
@@ -1227,7 +1227,7 @@ static void PostOrderTraversal(const Tree * const tree, FILE * const stream)
 		UnusualToExit(NullPointer, NULL);
 }
 
-// ²ãĞò±éÀú
+// å±‚åºéå†
 static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 {
 	// if (tree != NULL && stream != NULL)
@@ -1238,14 +1238,14 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 		{
 			if (stream == stdout)
 #ifdef WINDOWS_VISUALSTUDIO
-				fprintf_s(stdout, "\n²ãĞò±éÀú (×ÔÉÏ¶øÏÂ ´Ó×óÖÁÓÒ)");
+				fprintf_s(stdout, "\nå±‚åºéå† (è‡ªä¸Šè€Œä¸‹ ä»å·¦è‡³å³)");
 #else
-				fprintf(stdout, "\n²ãĞò±éÀú (×ÔÉÏ¶øÏÂ ´Ó×óÖÁÓÒ)");
+				fprintf(stdout, "\nå±‚åºéå† (è‡ªä¸Šè€Œä¸‹ ä»å·¦è‡³å³)");
 #endif
 			fputs("\n", stream);
 			LinkList Link;
 			CreateListByLink(&Link, (ElemNumb)(((long long)(1 << ((sizeof(ElemNumb) << 3) - 1))) - 1), QueueFileName);
-			EnQueue(&Link, tree->root); // Èë¶Ó
+			EnQueue(&Link, tree->root); // å…¥é˜Ÿ
 #ifdef DEBUG
 			TextFileAppendOperationByLink(&Link);
 #endif
@@ -1264,7 +1264,7 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 								};
 			do
 			{
-				DeQueue(&Link, &temp); // ³ö¶Ó
+				DeQueue(&Link, &temp); // å‡ºé˜Ÿ
 #ifdef DEBUG
 				TextFileAppendOperationByLink(&Link);
 #endif
@@ -1298,7 +1298,7 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 						if (temp->item.KeyValue)
 						{
 #ifdef BACKWARD_POINTER
-							fputs("¸¸: ", stdout);
+							fputs("çˆ¶: ", stdout);
 
 							// if (temp->father != NULL)
 							if (temp->father)
@@ -1312,7 +1312,7 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 								fputs("NULL\t", stdout);
 #endif
 
-							fputs("×ó×Ó: ", stdout);
+							fputs("å·¦å­: ", stdout);
 							
 							// if (temp->left != NULL)
 							if (temp->left)
@@ -1325,7 +1325,7 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 							// if (temp->left == NULL)
 							else
 								fputs("NULL\t", stdout);
-							fputs("  ÓÒ×Ó: ", stdout);
+							fputs("  å³å­: ", stdout);
 
 							// if (temp->right != NULL)
 							if (temp->right)
@@ -1386,7 +1386,7 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 #endif
 				}
 
-				if (Link.size == n) // ¶ÓÁĞÖĞÔªËØÊıÁ¿Îª2µÄn´ÎÃİ
+				if (Link.size == n) // é˜Ÿåˆ—ä¸­å…ƒç´ æ•°é‡ä¸º2çš„næ¬¡å¹‚
 					n <<= 1; // n = 2 * n;
 			} // while (QueueIsAllNull(&Link) == false);
 			while (!QueueIsAllNull(&Link));
@@ -1394,9 +1394,9 @@ static void LevelOrderTraversal(const Tree * const tree, FILE * const stream)
 		}
 		if (stream == stdout)
 #ifdef WINDOWS_VISUALSTUDIO
-			fprintf_s(stdout, "\nµ±Ç°¹²ÓĞ%d¸öÔªËØ\n\n", tree->size);
+			fprintf_s(stdout, "\nå½“å‰å…±æœ‰%dä¸ªå…ƒç´ \n\n", tree->size);
 #else
-			fprintf(stdout, "\nµ±Ç°¹²ÓĞ%d¸öÔªËØ\n\n", tree->size);
+			fprintf(stdout, "\nå½“å‰å…±æœ‰%dä¸ªå…ƒç´ \n\n", tree->size);
 #endif
 	}
 	
