@@ -83,7 +83,6 @@ void CreateBinaryTree(Tree * const tree, const ElemNumb Max, const char * const 
 		if (Max > 0)
 		{
 			tree->MaxSize = Max;
-			printf("\n动态搜索平衡二叉树\t%s\t本例中以0x起始的数字均为内存地址\n", sizeof(void *) == 4 ? "x86" : "x64");
 
 			// if (FileName != NULL)
 			if (FileName)
