@@ -28,8 +28,8 @@
 // 关	禁用AVL平衡二叉树
 // #define AVL_BINARY_TREE
 
-// 开	以程序语句添加数组元素
-// 关	以键盘添加数组元素
+// 开	以键盘输入添加二叉树元素
+// 关	以程序语句添加二叉树元素
 #define STDIN "每行输入一个数据后回车 在新行按Ctrl + %c后回车以终止输入\n"
 
 // 开	以文本文件输入输出 前提条件CreateBinaryTree函数中的参数FileName不为NULL
