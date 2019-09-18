@@ -1,45 +1,45 @@
 
 // binary tree.h
-// ¶¯Ì¬ËÑË÷Æ½ºâ¶ş²æÊ÷
+// åŠ¨æ€æœç´¢å¹³è¡¡äºŒå‰æ ‘
 /****************************************************************************************************************
-×÷Õß: Òü¿¡
-±¾³ÌĞò¹¦ÄÜÇ¿´ó ¾ßÓĞ³éÏóÊı¾İÀàĞÍ(ADT)·ç¸ñ Ö§³Ö±ê×¼ÊäÈëÊä³ö¡¢ÎÄ±¾ÎÄ¼şÊäÈëÊä³ö¡¢¶ş½øÖÆÎÄ¼şÊäÈëÊä³ö
-Ö§³Öx86ºÍx64Á½ÖÖ·½Ê½±àÒë
-¿ÉÇĞ»»Windows¡¢Linux¡¢MacOS²Ù×÷ÏµÍ³
+ä½œè€…: å¾®åš@GNUè®¡åˆ’
+æœ¬ç¨‹åºåŠŸèƒ½å¼ºå¤§ å…·æœ‰æŠ½è±¡æ•°æ®ç±»å‹(ADT)é£æ ¼ æ”¯æŒæ ‡å‡†è¾“å…¥è¾“å‡ºã€æ–‡æœ¬æ–‡ä»¶è¾“å…¥è¾“å‡ºã€äºŒè¿›åˆ¶æ–‡ä»¶è¾“å…¥è¾“å‡º
+æ”¯æŒx86å’Œx64ä¸¤ç§æ–¹å¼ç¼–è¯‘
+å¯åˆ‡æ¢Windowsã€Linuxã€MacOSæ“ä½œç³»ç»Ÿ
 ****************************************************************************************************************/
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
-/******************************************* ÒÔ ÏÂ Îª ³Ì Ğò Î¢ µ÷ Çø *******************************************/
+/******************************************* ä»¥ ä¸‹ ä¸º ç¨‹ åº å¾® è°ƒ åŒº *******************************************/
 /************************
-³ÌĞò´úÂëĞĞ		// ±íÊ¾¿ª
-// ³ÌĞò´úÂëĞĞ	// ±íÊ¾¹Ø
+ç¨‹åºä»£ç è¡Œ		// è¡¨ç¤ºå¼€
+// ç¨‹åºä»£ç è¡Œ	// è¡¨ç¤ºå…³
 ************************/
 
-// µ±Ç°ÏµÍ³ ÒÔÏÂÈıÑ¡Ò»
+// å½“å‰ç³»ç»Ÿ ä»¥ä¸‹ä¸‰é€‰ä¸€
 #define WINDOWS_VISUALSTUDIO
 // #define LINUX_GCC
 // #define MACOS_XCODE
 
-// ¿ª	Éú³É´Ó¸¸½áµãÖÁ×Ó½áµãµÄÖ¸Õë Í¬Ê±Éú³É´Ó×Ó½áµãÖÁ¸¸½áµãµÄ·´ÏòÖ¸Õë
-// ¹Ø	Éú³É´Ó¸¸½áµãÖÁ×Ó½áµãµÄÖ¸Õë
+// å¼€	ç”Ÿæˆä»çˆ¶ç»“ç‚¹è‡³å­ç»“ç‚¹çš„æŒ‡é’ˆ åŒæ—¶ç”Ÿæˆä»å­ç»“ç‚¹è‡³çˆ¶ç»“ç‚¹çš„åå‘æŒ‡é’ˆ
+// å…³	ç”Ÿæˆä»çˆ¶ç»“ç‚¹è‡³å­ç»“ç‚¹çš„æŒ‡é’ˆ
 // #define BACKWARD_POINTER
 
-// ¿ª	ÆôÓÃAVLÆ½ºâ¶ş²æÊ÷	×¢Òâ:¿ªÆôºó²»µÃµ÷ÓÃDelBinaryTreeNodeº¯Êı
-// ¹Ø	½ûÓÃAVLÆ½ºâ¶ş²æÊ÷
+// å¼€	å¯ç”¨AVLå¹³è¡¡äºŒå‰æ ‘	æ³¨æ„:å¼€å¯åä¸å¾—è°ƒç”¨DelBinaryTreeNodeå‡½æ•°
+// å…³	ç¦ç”¨AVLå¹³è¡¡äºŒå‰æ ‘
 // #define AVL_BINARY_TREE
 
-// ¿ª	ÒÔ¼üÅÌÊäÈëÌí¼Ó¶ş²æÊ÷ÔªËØ
-// ¹Ø	ÒÔ³ÌĞòÓï¾äÌí¼Ó¶ş²æÊ÷ÔªËØ
-#define STDIN "Ã¿ĞĞÊäÈëÒ»¸öÊı¾İºó»Ø³µ ÔÚĞÂĞĞ°´Ctrl + %cºó»Ø³µÒÔÖÕÖ¹ÊäÈë\n"
+// å¼€	ä»¥é”®ç›˜è¾“å…¥æ·»åŠ äºŒå‰æ ‘å…ƒç´ 
+// å…³	ä»¥ç¨‹åºè¯­å¥æ·»åŠ äºŒå‰æ ‘å…ƒç´ 
+#define STDIN "æ¯è¡Œè¾“å…¥ä¸€ä¸ªæ•°æ®åå›è½¦ åœ¨æ–°è¡ŒæŒ‰Ctrl + %cåå›è½¦ä»¥ç»ˆæ­¢è¾“å…¥\n"
 
-// ¿ª	ÒÔÎÄ±¾ÎÄ¼şÊäÈëÊä³ö Ç°ÌáÌõ¼şCreateBinaryTreeº¯ÊıÖĞµÄ²ÎÊıFileName²»ÎªNULL
-// ¹Ø	ÒÔ¶ş½øÖÆÎÄ¼şÊäÈëÊä³ö Ç°ÌáÌõ¼şCreateBinaryTreeº¯ÊıÖĞµÄ²ÎÊıFileName²»ÎªNULL
+// å¼€	ä»¥æ–‡æœ¬æ–‡ä»¶è¾“å…¥è¾“å‡º å‰ææ¡ä»¶CreateBinaryTreeå‡½æ•°ä¸­çš„å‚æ•°FileNameä¸ä¸ºNULL
+// å…³	ä»¥äºŒè¿›åˆ¶æ–‡ä»¶è¾“å…¥è¾“å‡º å‰ææ¡ä»¶CreateBinaryTreeå‡½æ•°ä¸­çš„å‚æ•°FileNameä¸ä¸ºNULL
 #define CAN_OPEN_FILE
 
-// ¿ª	¿ªÆôµ÷ÊÔÄ£Ê½ ÒÔÎÄ±¾ÎÄ¼şĞÎÊ½Êä³ö³ÌĞòÖĞµÄ¶ÑÕ»¼°¶ÓÁĞµÄËùÓĞ²Ù×÷ ×¢:±ØĞë¿ªÆôCAN_OPEN_FILE²ÅÓĞĞ§
-// ¹Ø	¹Ø±Õµ÷ÊÔÄ£Ê½
+// å¼€	å¼€å¯è°ƒè¯•æ¨¡å¼ ä»¥æ–‡æœ¬æ–‡ä»¶å½¢å¼è¾“å‡ºç¨‹åºä¸­çš„å †æ ˆåŠé˜Ÿåˆ—çš„æ‰€æœ‰æ“ä½œ æ³¨:å¿…é¡»å¼€å¯CAN_OPEN_FILEæ‰æœ‰æ•ˆ
+// å…³	å…³é—­è°ƒè¯•æ¨¡å¼
 #define DEBUG
-/******************************************* ÒÔ ÉÏ Îª ³Ì Ğò Î¢ µ÷ Çø *******************************************/
+/******************************************* ä»¥ ä¸Š ä¸º ç¨‹ åº å¾® è°ƒ åŒº *******************************************/
 #ifdef WINDOWS_VISUALSTUDIO
 	#include <conio.h>
 #endif
@@ -49,37 +49,37 @@
 #include <ctype.h>
 
 #ifdef WINDOWS_VISUALSTUDIO
-	#define LEN 224 // WindowsÎÄ¼şÃû³¤¶ÈÉÏÏŞ×Ö·ûÊı
+	#define LEN 224 // Windowsæ–‡ä»¶åé•¿åº¦ä¸Šé™å­—ç¬¦æ•°
 #else
-	#define LEN 255 // MacOS¡¢ LinuxÎÄ¼şÃû³¤¶ÈÉÏÏŞ×Ö·ûÊı
+	#define LEN 255 // MacOSã€ Linuxæ–‡ä»¶åé•¿åº¦ä¸Šé™å­—ç¬¦æ•°
 #endif
 
 #ifdef CAN_OPEN_FILE
-	#define	READ "r" // ÎÄ±¾ÎÄ¼ş¶Á²Ù×÷ ±ØĞëĞ¡Ğ´
-	#define	WRITE "w" // ÎÄ±¾ÎÄ¼şĞ´²Ù×÷ ±ØĞëĞ¡Ğ´
+	#define	READ "r" // æ–‡æœ¬æ–‡ä»¶è¯»æ“ä½œ å¿…é¡»å°å†™
+	#define	WRITE "w" // æ–‡æœ¬æ–‡ä»¶å†™æ“ä½œ å¿…é¡»å°å†™
 #else
-	#define	READ "rb" // ¶ş½øÖÆÎÄ¼ş¶Á²Ù×÷ ±ØĞëĞ¡Ğ´
-	#define	WRITE "wb" // ¶ş½øÖÆÎÄ¼şĞ´²Ù×÷ ±ØĞëĞ¡Ğ´
+	#define	READ "rb" // äºŒè¿›åˆ¶æ–‡ä»¶è¯»æ“ä½œ å¿…é¡»å°å†™
+	#define	WRITE "wb" // äºŒè¿›åˆ¶æ–‡ä»¶å†™æ“ä½œ å¿…é¡»å°å†™
 #endif
 
 #ifdef DEBUG
-	#define APPEND "a" // ÎÄ±¾ÎÄ¼ş×·¼Ó²Ù×÷ ±ØĞëĞ¡Ğ´
+	#define APPEND "a" // æ–‡æœ¬æ–‡ä»¶è¿½åŠ æ“ä½œ å¿…é¡»å°å†™
 #endif
 
-// ÒÔÏÂÈıĞĞÌåÏÖÁË³ÌĞò³éÏóÊı¾İÀàĞÍ(ADT)·ç¸ñ
-#define INPUT_FORMAT "%d\n",&temp.KeyValue // ´Ë´¦Ëæ½á¹¹ÌåTreeItem¶ø¸Ä¶¯ Ìæ»»²¿·Ö²»µÃ°üº¬¿Õ¸ñ
-#define OUTPUT_FORMAT "%d%c",temp->item.KeyValue // ´Ë´¦Ëæ½á¹¹ÌåTreeItem¶ø¸Ä¶¯ Ìæ»»²¿·Ö²»µÃ°üº¬¿Õ¸ñ
-#define NUMBER_OF_FORMAT 1 // ½á¹¹ÌåTreeItemÄÚµÄÊı¾İÏîÊıÄ¿
+// ä»¥ä¸‹ä¸‰è¡Œä½“ç°äº†ç¨‹åºæŠ½è±¡æ•°æ®ç±»å‹(ADT)é£æ ¼
+#define INPUT_FORMAT "%d\n",&temp.KeyValue // æ­¤å¤„éšç»“æ„ä½“TreeItemè€Œæ”¹åŠ¨ æ›¿æ¢éƒ¨åˆ†ä¸å¾—åŒ…å«ç©ºæ ¼
+#define OUTPUT_FORMAT "%d%c",temp->item.KeyValue // æ­¤å¤„éšç»“æ„ä½“TreeItemè€Œæ”¹åŠ¨ æ›¿æ¢éƒ¨åˆ†ä¸å¾—åŒ…å«ç©ºæ ¼
+#define NUMBER_OF_FORMAT 1 // ç»“æ„ä½“TreeItemå†…çš„æ•°æ®é¡¹æ•°ç›®
 
 typedef enum { false, true } bool;
-typedef char ElemNumb; // Ë³Ğò±íÊıÁ¿µ¥Î» ElemNumb¿ÉÎªchar»òshort»òint»òlong µ«²»¿ÉÎªlong long
+typedef char ElemNumb; // é¡ºåºè¡¨æ•°é‡å•ä½ ElemNumbå¯ä¸ºcharæˆ–shortæˆ–intæˆ–long ä½†ä¸å¯ä¸ºlong long
 typedef int Key;
 
-/********************************ÊôĞÔ********************************/
+/********************************å±æ€§********************************/
 typedef struct
 {
-	Key KeyValue; // ´Ë´¦ËæÔªËØÊôĞÔ¶ø¸Ä±ä
-	// ´Ë´¦¿ÉÌí¼ÓÆäËûÊı¾İÀàĞÍ
+	Key KeyValue; // æ­¤å¤„éšå…ƒç´ å±æ€§è€Œæ”¹å˜
+	// æ­¤å¤„å¯æ·»åŠ å…¶ä»–æ•°æ®ç±»å‹
 } TreeItem;
 
 typedef struct Tnode
@@ -90,25 +90,25 @@ typedef struct Tnode
 #endif
 	struct Tnode *left, *right;
 #ifdef AVL_BINARY_TREE
-	ElemNumb height; // ×ÓÊ÷µÄ¸ß¶È
+	ElemNumb height; // å­æ ‘çš„é«˜åº¦
 #endif
 } TreeNode;
 
 typedef struct
 {
 	TreeNode *root;
-	ElemNumb size; // ¶ş²æÊ÷½áµãÊı
-	ElemNumb MaxSize; // ¶ş²æÊ÷½áµãÊı×î´óÖµ
-	char *DLRFileName; // Ç°Ğò±éÀúÎÄ¼şÃû
-	char *LDRFileName; // ÖĞĞò±éÀúÎÄ¼şÃû
-	char *LRDFileName; // ºóĞò±éÀúÎÄ¼şÃû
-	char *FileName; // ²ãĞò±éÀúÎÄ¼şÃû
+	ElemNumb size; // äºŒå‰æ ‘ç»“ç‚¹æ•°
+	ElemNumb MaxSize; // äºŒå‰æ ‘ç»“ç‚¹æ•°æœ€å¤§å€¼
+	char *DLRFileName; // å‰åºéå†æ–‡ä»¶å
+	char *LDRFileName; // ä¸­åºéå†æ–‡ä»¶å
+	char *LRDFileName; // ååºéå†æ–‡ä»¶å
+	char *FileName; // å±‚åºéå†æ–‡ä»¶å
 } Tree;
 
 typedef struct
 {
-	TreeNode *parent; // ²éÕÒ³É¹¦ºóµÄ½áµãµÄ¸¸½áµãµØÖ·
-	TreeNode *child; // ²éÕÒ³É¹¦ºóµÄ½áµãµØÖ·
+	TreeNode *parent; // æŸ¥æ‰¾æˆåŠŸåçš„ç»“ç‚¹çš„çˆ¶ç»“ç‚¹åœ°å€
+	TreeNode *child; // æŸ¥æ‰¾æˆåŠŸåçš„ç»“ç‚¹åœ°å€
 }Pair; 
 
 extern const char* const SameTreeItem;
@@ -122,36 +122,36 @@ extern const char* const FileNameTooLong;
 extern const char* const FileNameError;
 extern const char* const MemoryNotEnough;
 
-/********************************²Ù×÷********************************/
-// ²Ù×÷£º°ÑÒ»¿ÃÊ÷³õÊ¼»¯Îª¿ÕÊ÷
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÃÊ÷
-// ²Ù×÷ºó£º¸ÃÊ÷ÒÑ±»³õÊ¼»¯Îª¿ÕÊ÷
+/********************************æ“ä½œ********************************/
+// æ“ä½œï¼šæŠŠä¸€æ£µæ ‘åˆå§‹åŒ–ä¸ºç©ºæ ‘
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€æ£µæ ‘
+// æ“ä½œåï¼šè¯¥æ ‘å·²è¢«åˆå§‹åŒ–ä¸ºç©ºæ ‘
 void CreateBinaryTree(Tree * const tree, const ElemNumb Max, const char * const FileName);
 
-// ²Ù×÷£º´ÓÊ÷ÖĞÉ¾³ıËùÓĞ½áµã
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÃÒÑ¾­³õÊ¼»¯µÄÊ÷
-// ²Ù×÷ºó£º¸ÃÊ÷Îª¿ÕÊ÷
+// æ“ä½œï¼šä»æ ‘ä¸­åˆ é™¤æ‰€æœ‰ç»“ç‚¹
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€æ£µå·²ç»åˆå§‹åŒ–çš„æ ‘
+// æ“ä½œåï¼šè¯¥æ ‘ä¸ºç©ºæ ‘
 void DestroyBinaryTree(Tree * const tree);
 
-// ²Ù×÷£ºÈ·ÈÏÊ÷ÊÇ·ñÎª¿Õ
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÃÊ÷
-// ²Ù×÷ºó£ºÊ÷Îª¿Õ·µ»Øtrue ·Ç¿Õ·µ»Øfalse
+// æ“ä½œï¼šç¡®è®¤æ ‘æ˜¯å¦ä¸ºç©º
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€æ£µæ ‘
+// æ“ä½œåï¼šæ ‘ä¸ºç©ºè¿”å›true éç©ºè¿”å›false
 const bool BinaryTreeIsEmpty(const Tree * const tree);
 
-// ²Ù×÷£ºÈ·ÈÏÊ÷ÊÇ·ñÎªÂú
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÃÊ÷
-// ²Ù×÷ºó£ºÊ÷ÒÑÂú·µ»Øtrue Î´Âú·µ»Øfalse
+// æ“ä½œï¼šç¡®è®¤æ ‘æ˜¯å¦ä¸ºæ»¡
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€æ£µæ ‘
+// æ“ä½œåï¼šæ ‘å·²æ»¡è¿”å›true æœªæ»¡è¿”å›false
 const bool BinaryTreeIsFull(const Tree * const tree);
 
-// ²Ù×÷£ºÏòÊ÷ÖĞÌí¼ÓÒ»¸ö½áµã
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÅÒÑ³õÊ¼»¯µÄÊ÷ piÎª´ıÌí¼Ó½áµã
-// ²Ù×÷ºó£ºÎŞ
+// æ“ä½œï¼šå‘æ ‘ä¸­æ·»åŠ ä¸€ä¸ªç»“ç‚¹
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€é¢—å·²åˆå§‹åŒ–çš„æ ‘ piä¸ºå¾…æ·»åŠ ç»“ç‚¹
+// æ“ä½œåï¼šæ— 
 void AddBinaryTreeNode(Tree * const tree, const TreeItem * const pi);
 
-// ²Ù×÷£º´ÓÊ÷ÖĞÉ¾³ıÒ»¸ö½áµã
-// ²Ù×÷Ç°£ºtreeÖ¸ÏòÒ»¿ÃÊ÷
-// ²Ù×÷ºó£ºÎŞ
-// ×¢Òâµ÷ÓÃDelBinaryTreeNodeÊ±±ØĞëÔÚ³ÌĞòÎ¢µ÷Çø¹Ø±ÕAVL_BINARY_TREE
+// æ“ä½œï¼šä»æ ‘ä¸­åˆ é™¤ä¸€ä¸ªç»“ç‚¹
+// æ“ä½œå‰ï¼štreeæŒ‡å‘ä¸€æ£µæ ‘
+// æ“ä½œåï¼šæ— 
+// æ³¨æ„è°ƒç”¨DelBinaryTreeNodeæ—¶å¿…é¡»åœ¨ç¨‹åºå¾®è°ƒåŒºå…³é—­AVL_BINARY_TREE
 void DelBinaryTreeNode(Tree * const tree, TreeItem * const pi);
 
 Pair SearchBinaryTreeItem(const Tree * const tree, const TreeItem * const pi);
@@ -160,7 +160,7 @@ void FileOperationByBinaryTree(Tree * const tree, const char * const mode);
 
 void InputBinaryTreeFromKeyboard(Tree * const tree, FILE * const stream);
 
-// Êä³ö¶ş²æÊ÷treeµÄËùÓĞÔªËØ
+// è¾“å‡ºäºŒå‰æ ‘treeçš„æ‰€æœ‰å…ƒç´ 
 void OutputBinaryTreeToMonitor(const Tree * const tree, FILE * const stream, const char * const str);
 
 void GetMinOfBinaryTree(const Tree * const tree, TreeItem * const ap);
