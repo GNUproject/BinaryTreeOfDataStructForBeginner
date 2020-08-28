@@ -1,6 +1,6 @@
 
 // main.c
-// ±¾ÎÄ¼şÎª¶¯Ì¬ËÑË÷Æ½ºâ¶ş²æÊ÷½Ó¿Ú²âÊÔ³ÌĞò ²»Àí½âÃ»¹ØÏµ ½ö¹©²Î¿¼
+// æœ¬æ–‡ä»¶ä¸ºåŠ¨æ€æœç´¢å¹³è¡¡äºŒå‰æ ‘æ¥å£æµ‹è¯•ç¨‹åº ä¸ç†è§£æ²¡å…³ç³» ä»…ä¾›å‚è€ƒ
 
 #include "binary tree.h"
 
@@ -10,12 +10,12 @@ static const ElemNumb Max = (ElemNumb)(((long long)(1 << ((sizeof(ElemNumb) << 3
 int main(const int argc, const char * const argv[ ])
 {
 	Tree BinaryTree;
-	const char * const FileName = "binary tree"; // ÎÄ¼şÃû Èô¸ÄÎªNULLÔòÎŞÎÄ¼şÊäÈëÊä³ö¹¦ÄÜ	NULL²»´ø" "
-	printf("\n¶ş²æËÑË÷%sÆ½ºâÊ÷\t%s\t±¾ÀıÖĞÒÔ0xÆğÊ¼µÄÊı×Ö¾ùÎªÄÚ´æµØÖ·\n", 
+	const char * const FileName = "binary tree"; // æ–‡ä»¶å è‹¥æ”¹ä¸ºNULLåˆ™æ— æ–‡ä»¶è¾“å…¥è¾“å‡ºåŠŸèƒ½	NULLä¸å¸¦" "
+	printf("\näºŒå‰æœç´¢%så¹³è¡¡æ ‘\t%s\tæœ¬ä¾‹ä¸­ä»¥0xèµ·å§‹çš„æ•°å­—å‡ä¸ºå†…å­˜åœ°å€\n", 
 #ifdef AVL
 		"",
 #else
-		"·Ç",
+		"é",
 #endif
 		sizeof(void *) == 4 ? "x86" : "x64");
 	CreateBinaryTree(&BinaryTree, Max, FileName);
@@ -25,8 +25,8 @@ int main(const int argc, const char * const argv[ ])
 	for (index = 0; index < sizeof(BinaryTreeElement) / sizeof(BinaryTreeElement[0]); ++index)
 		AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[index]);
 
-	const TreeItem SearchItem = { 18 };
-	// Pair result = SearchItemOfBinaryTree(&BinaryTree, &SearchItem); // ²éÕÒ¶ş²æÊ÷½áµã
+	// const TreeItem SearchItem = { 18 };
+	// Pair result = SearchItemOfBinaryTree(&BinaryTree, &SearchItem); // æŸ¥æ‰¾äºŒå‰æ ‘ç»“ç‚¹
 
 	// TreeItem DelNode = { 23 };
 	// DeleteNodeOfBinaryTree(&BinaryTree, &DelNode);
@@ -37,7 +37,7 @@ int main(const int argc, const char * const argv[ ])
 #endif
 
 /*
-	// LLĞı×ª
+	// LLæ—‹è½¬
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[0]); // 16
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[1]); // 8
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[2]); // 24
@@ -47,7 +47,7 @@ int main(const int argc, const char * const argv[ ])
 */
 
 /*
-	// LRĞı×ª
+	// LRæ—‹è½¬
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[0]); // 16
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[1]); // 8
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[2]); // 24
@@ -57,7 +57,7 @@ int main(const int argc, const char * const argv[ ])
 */
 
 /*
-	// RLĞı×ª
+	// RLæ—‹è½¬
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[0]); // 16
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[1]); // 8
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[2]); // 24
@@ -66,7 +66,7 @@ int main(const int argc, const char * const argv[ ])
 */
 
 /*
-	// RRĞı×ª
+	// RRæ—‹è½¬
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[0]); // 16
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[1]); // 8
 	AddNodeOfBinaryTree(&BinaryTree, &BinaryTreeElement[2]); // 24
@@ -84,7 +84,7 @@ int main(const int argc, const char * const argv[ ])
 		FileOperationWithBinaryTree(&BinaryTree, READ);
 	}
 
-	OutputBinaryTreeToScreen(&BinaryTree, stdout, NULL); // µ÷ÓÃOutputBinaryTreeToScreenº¯ÊıÊ±²ÎÊı3ÓÀÔ¶ÎªNULL
+	OutputBinaryTreeToScreen(&BinaryTree, stdout, NULL); // è°ƒç”¨OutputBinaryTreeToScreenå‡½æ•°æ—¶å‚æ•°3æ°¸è¿œä¸ºNULL
 	DestroyBinaryTree(&BinaryTree);
 
 #ifdef WINDOWS_VISUALSTUDIO
